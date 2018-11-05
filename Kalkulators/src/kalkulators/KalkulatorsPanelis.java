@@ -11,6 +11,7 @@ public class KalkulatorsPanelis extends javax.swing.JPanel {
 
     public KalkulatorsPanelis() {
         initComponents();
+        skaitlis = "0";
     }
 
     @SuppressWarnings("unchecked")
@@ -273,7 +274,6 @@ public class KalkulatorsPanelis extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void izvadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_izvadeActionPerformed
-
     }//GEN-LAST:event_izvadeActionPerformed
 
     private void poga1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_poga1ActionPerformed
@@ -321,45 +321,51 @@ public class KalkulatorsPanelis extends javax.swing.JPanel {
     }//GEN-LAST:event_poga10ActionPerformed
 
     private void pogarezultatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pogarezultatsActionPerformed
+
         skaitlis2 = izvade.getText();
         pakape = izvade.getText();
-        double sk1 = Double.valueOf(skaitlis);
-        double sk2 = Double.valueOf(skaitlis2);
-        int sk3 = Integer.valueOf(pakape);
-        calcfuncitions apr = new calcfuncitions();
-        double result = 0.0;
+        try {
+            double sk1 = Double.valueOf(skaitlis);
+            double sk2 = Double.valueOf(skaitlis2);
+            int sk3 = Integer.valueOf(pakape);
+            calcfuncitions apr = new calcfuncitions();
+            double result = 0.0;
 
-        if (!parbaude) {
-            switch (darbiba) {
-                case "+":
-                    result = apr.saskaitit(sk1, sk2);
-                    break;
+            if (!parbaude) {
+                switch (darbiba) {
+                    case "+":
+                        result = apr.saskaitit(sk1, sk2);
+                        break;
 
-                case "-":
-                    result = apr.atnemt(sk1, sk2);
-                    break;
+                    case "-":
+                        result = apr.atnemt(sk1, sk2);
+                        break;
 
-                case "*":
-                    result = apr.reiz(sk1, sk2);
-                    break;
+                    case "*":
+                        result = apr.reiz(sk1, sk2);
+                        break;
 
-                case "/":
-                    result = apr.dal(sk1, sk2);
-                    break;
-                    
-                case "^":
-                    result = apr.kap(sk1, sk3);
-                    break;
+                    case "/":
+                        result = apr.dal(sk1, sk2);
+                        break;
 
-            }
-            izvade.setText(String.valueOf(result));
+                    case "^":
+                        result = apr.kap(sk1, sk3);
+                        break;
+
+                }
+                izvade.setText(String.valueOf(result));
     }//GEN-LAST:event_pogarezultatsActionPerformed
-        if (parbaude) {
-            izvade.setText("");
-        }
-        parbaude = true;
-    }
+            if (parbaude) {
+                izvade.setText("");
+            }
+            parbaude = true;
 
+        } catch (Exception ex) {
+            izvade.setText("");
+           
+        }
+    }
     private void pogaplusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pogaplusActionPerformed
         skaitlis = izvade.getText();
         darbiba = "+";
@@ -403,7 +409,7 @@ public class KalkulatorsPanelis extends javax.swing.JPanel {
             izvade.setText("");
             parbaude = false;
         }
-        if(izvDarbiba){
+        if (izvDarbiba) {
             izvade.setText("");
             izvDarbiba = false;
         }
