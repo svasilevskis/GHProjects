@@ -7,7 +7,7 @@ public class SarakstaPiemers {
 
     public static void main(String[] args) {
 
-        uzdevums();
+        apvienosana();
 //        ArrayList<String> saraksts = new ArrayList<>();
 //        saraksts.add("elements1");
 //        saraksts.add("elements2");
@@ -94,5 +94,58 @@ public class SarakstaPiemers {
                 }
             }
         }
+    }
+
+    public static void apvienosana() {
+
+        ArrayList<Integer> skaitlusaraksts = new ArrayList<>();
+
+        System.out.println("Pievienot + | Atnemt - ");
+        Scanner sc = new Scanner(System.in);
+        String izvele = sc.nextLine();
+        switch (izvele) {
+            case "+":
+                while (true) {
+                    try {
+                        System.out.println("Ievadiet skaitli! Spiediet n kad velaties iziet");
+
+                        int skaitlis = sc.nextInt();
+                        skaitlusaraksts.add(skaitlis);
+                    } catch (Exception ex) {
+                        if (sc.nextLine().equals("n")) {
+                            break;
+                        }
+                    }
+                }
+
+            case "-":
+                System.out.println("Kuru elementu velaties dzest?");
+                System.out.println(skaitlusaraksts.toString());
+                while (true) {
+                    int i = sc.nextInt();
+
+                    try {
+                        if (skaitlusaraksts.size() > 0) {
+
+                            skaitlusaraksts.remove(i);
+
+                            String apvienotais = skaitlusaraksts.toString();
+                            System.out.println(apvienotais);
+                        } else {
+                            System.out.println("Tukss");
+                            break;
+                        }
+                    } catch (Exception ex) {
+                        if (i > skaitlusaraksts.size()) {
+                            System.out.println("ERROR");
+
+                        }
+                    }
+                }
+            default:
+                System.out.println(skaitlusaraksts.toString());
+                break;
+        }
+
     }
 }
