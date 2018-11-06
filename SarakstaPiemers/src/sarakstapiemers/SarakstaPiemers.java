@@ -117,7 +117,7 @@ public class SarakstaPiemers {
                         }
                     }
                 }
-
+                
             case "-":
                 System.out.println("Kuru elementu velaties dzest?");
                 System.out.println(skaitlusaraksts.toString());
@@ -142,6 +142,7 @@ public class SarakstaPiemers {
                         }
                     }
                 }
+                break;
             default:
                 System.out.println(skaitlusaraksts.toString());
                 break;
