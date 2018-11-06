@@ -113,7 +113,7 @@ public class SarakstaPiemers {
                         skaitlusaraksts.add(skaitlis);
                     } catch (Exception ex) {
                         if (sc.nextLine().equals("n")) {
-                            break;
+                            return;
                         }
                     }
                 }
