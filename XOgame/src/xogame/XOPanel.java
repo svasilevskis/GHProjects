@@ -11,6 +11,10 @@ public class XOPanel extends javax.swing.JPanel {
     private String startGame = "X";
     private int xCounter = 0;
     private int oCounter = 0;
+    String timeString = "";
+    int hours = 0, minutes = 0, seconds = 0;
+
+    Thread t = null;
 
     public XOPanel() {
         initComponents();
@@ -23,7 +27,7 @@ public class XOPanel extends javax.swing.JPanel {
 
     private void player() {
         if (startGame.equalsIgnoreCase("X")) {
-            startGame = "0";
+            startGame = "O";
         } else {
             startGame = "X";
         }
@@ -189,6 +193,7 @@ public class XOPanel extends javax.swing.JPanel {
         playerTwo = new javax.swing.JLabel();
         playerOneCounter = new javax.swing.JLabel();
         playerTwoCounter = new javax.swing.JLabel();
+        btnPong = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -295,6 +300,14 @@ public class XOPanel extends javax.swing.JPanel {
         playerTwoCounter.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         playerTwoCounter.setText("0");
 
+        btnPong.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnPong.setText("PONG");
+        btnPong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPongActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -321,6 +334,9 @@ public class XOPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btn9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,11 +349,10 @@ public class XOPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(playerTwoCounter))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(btnPong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -360,7 +375,9 @@ public class XOPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(playerTwo)
                             .addComponent(playerTwoCounter))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(11, 11, 11)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -376,7 +393,7 @@ public class XOPanel extends javax.swing.JPanel {
                         .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGap(13, 13, 13))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -434,8 +451,9 @@ public class XOPanel extends javax.swing.JPanel {
         wonGame();
     }//GEN-LAST:event_btn9ActionPerformed
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
 
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -450,6 +468,11 @@ public class XOPanel extends javax.swing.JPanel {
         btn9.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
+    private void btnPongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPongActionPerformed
+
+        new Game();
+    }//GEN-LAST:event_btnPongActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1;
@@ -462,6 +485,7 @@ public class XOPanel extends javax.swing.JPanel {
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnPong;
     private javax.swing.JButton btnReset;
     private javax.swing.JLabel playerOne;
     private javax.swing.JLabel playerOneCounter;
